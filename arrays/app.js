@@ -137,26 +137,50 @@ function divisibleByTwo(num) {
   return num % 2 === 0;
 }
 
-console.log("divisible by two");
-console.log(divisibleByTwo(2));
-// console.log(divisibleByTwo(3));
-// console.log(divisibleByTwo(5));
-console.log(divisibleByTwo(6));
+// console.log("divisible by two");
+// console.log(divisibleByTwo(2));
+// // console.log(divisibleByTwo(3));
+// // console.log(divisibleByTwo(5));
+// console.log(divisibleByTwo(6));
+//
+// // console.log([1, 2, 3, 4, 5].mySome(3));
+// // console.log([1, 2, 3, 4, 5].mySome(8));
+// console.log("my some divisibleByTwo");
+// // console.log([1, 2, 3, 4, 5].mySome(divisibleByTwo));
+// console.log([1, 2, 3, 5].mySome((el) => { return num % 2 === 0}));
+// // console.log(["a", "b", "c", "d"].mySome("c"));
+// // console.log(["a", "b", "c", "d"].mySome("z"));
+// console.log("--------------------");
+//
+// function hasFactorsOfThree(array) {
+//   return array.mySome((el) => {
+//     return el % 3 === 0;
+//   });
+// };
+//
+// console.log(hasFactorsOfThree([1, 2, 4, 5]));
+// console.log(hasFactorsOfThree([3]));
 
-// console.log([1, 2, 3, 4, 5].mySome(3));
-// console.log([1, 2, 3, 4, 5].mySome(8));
-console.log("my some divisibleByTwo");
-// console.log([1, 2, 3, 4, 5].mySome(divisibleByTwo));
-console.log([1, 2, 3, 5].mySome((el) => { return num % 2 === 0}));
-// console.log(["a", "b", "c", "d"].mySome("c"));
-// console.log(["a", "b", "c", "d"].mySome("z"));
-console.log("--------------------");
 
-function hasFactorsOfThree(array) {
-  return array.mySome((el) => {
-    return el % 3 === 0;
+Array.prototype.myReduce = function(cb) {
+  let firstVal = this[0];
+
+  for (var i = 1; i < this.length; i++) {
+    firstVal = cb(firstVal, this[i]);
+  }
+
+  return firstVal;
+}
+
+function plus(a, b) {
+  return a + b;
+}
+
+function minus(array) {
+  return array.myReduce((acc, el) => {
+    return acc - el;
   });
-};
+}
 
-console.log(hasFactorsOfThree([1, 2, 4, 5]));
-console.log(hasFactorsOfThree([3]));
+console.log([1, 2, 3, 4, 5].myReduce(plus));
+console.log(minus([5, 2, 1]));
